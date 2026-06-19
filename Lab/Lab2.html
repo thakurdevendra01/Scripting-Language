@@ -1,0 +1,43 @@
+<!-- Demonstrate the use of alert, confirm and prompt using javascript.
+     Make the use of function call for confirm and prompt:
+    for confirm: i) Delete link  ii) Are you sure you want to delete? if click ok then 
+                                    Deleted successfully else Deletion aborted
+    for prompt: i) Ask for name  ii) Hello [name], how are you today?-->
+
+     <html>
+        <head><title>Lab 2 Alert, Confirm and prompt</title></head>
+        <body>
+            <script type="text/javascript">
+                //for alert box
+                function show_alert(){
+                    alert("I am an alert box!");
+                }
+                //for confirm
+                function show_confirm(){
+                    var x = confirm("Are you sure you want to delete?");
+                    if(x == true){
+                        document.getElementById("demo").innerHTML = "Deleted successfully";
+                    }else{
+                        document.getElementById("demo").innerHTML = "Deletion Aborted";
+                    }
+                }
+                
+                //for prompt
+                function show_prompt(){
+                    var y = prompt("Enter your name: ");
+                    if(y != null){
+                        document.getElementById("demo1").innerHTML = "Hello " + y +", how are you today?";
+                    }
+                }
+            </script>
+
+            <input type="button" onclick="show_alert()" value="Show Alert"> <br><br>
+            <a href="#" onclick="show_confirm()">Delete</a><br><br>
+            <input type="button" onclick="show_confirm()" value="Show Confirm">
+            <p id="demo"></p>
+            <input type="button" onclick="show_prompt()" value="Show Prompt">
+            <p id="demo1"></p>
+            
+        </body>
+
+     </html>

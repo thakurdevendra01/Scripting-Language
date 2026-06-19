@@ -1,0 +1,23 @@
+<html>
+    <head><title>Form</title>
+    <script>
+        function ValidateForm(){
+            var x = document.forms["myForm"]["FName"].value;
+            if(x == ""){
+                alert("Please Fill out First Name");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    </head>
+    <body>
+        <form name="myForm" action="" onsubmit="return ValidateForm()" method="post">
+            First Name:
+            <input type="text" name="FName">
+
+            <input type="submit" value="submit">
+
+        </form>
+    </body>
+</html>
