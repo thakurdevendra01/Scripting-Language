@@ -1,55 +1,51 @@
-function validateform() {
-
-    var a = document.forms["myform"]["name"].value;
-    var b = document.forms["myform"]["email"].value;
-    var c = document.forms["myform"]["phone"].value;
-    var d = document.forms["myform"]["pwd"].value;
-
-    // Name Validation
-    var namePattern = /^[A-Za-z ]+$/;
-    if (a == "") {
-        alert("Please fill out name");
-        return false;
-    }
-    if (!namePattern.test(a)) {
-        alert("Name can contain only letters and spaces");
-        return false;
-    }
-
-    // Email Validation
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (b == "") {
-        alert("Please fill out email");
-        return false;
-    }
-    if (!emailPattern.test(b)) {
-        alert("Invalid email format");
-        return false;
-    }
-
-    // Phone Validation
-    var phonePattern = /^98[0-9]{8}$/;
-
-    if (c == "") {
-        alert("Please fill out phone");
-        return false;
-    }
+function validateform()
+{
+    document.getElementById("nameError").innerHTML="";
+    document.getElementById("emailError").innerHTML="";
+    document.getElementById("phoneError").innerHTML="";
+    document.getElementById("passwordError").innerHTML="";
     
-    if (!phonePattern.test(c)) {
-        alert("Phone must start with 98 and contain exactly 10 digits");
-        return false;
+    let name=document.getElementById("name").value.trim();
+    let email=document.getElementById("email").value.trim();
+    let phone=document.getElementById("phone").value.trim();
+    let password=document.getElementById("password").value.trim();
+
+    let namePattern= /^[A-Za-z\s]+$/;
+    let emailPattern=  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let phonePattern= /^[0-9]{10}$/;
+    isValid=true;
+    
+    if(!namePattern.test(name))
+    {
+        document.getElementById("nameError").innerHTML=
+        "Name should contain only letters.";
+        isValid=false;
     }
 
-    // Password Validation
-    if (d == "") {
-        alert("Please fill out Password");
-        return false;
-    }
-    if (d.length < 6) {
-        alert("Password must be at least 6 characters");
-        return false;
+    if(!emailPattern.test(email))
+    {
+        document.getElementById("emailError").innerHTML=
+        "Enter a valid email address.";
+        isValid=false;
     }
 
-    alert("Registration Successful");
-    return true;
+    if(!phonePattern.test(phone))
+    {
+        document.getElementById("phoneError").innerHTML=
+         "Phone number must contain exactly 10 digits.";
+         isValid=false;
+    }
+
+     if (password.length < 6) {
+        document.getElementById("passwordError").innerHTML =
+        "Password must be at least 6 characters.";
+        isValid = false;
+    }
+
+    if (isValid) {
+        alert("Registration Successful");
+    }
+
+    return isValid;
+
 }
