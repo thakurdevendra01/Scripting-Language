@@ -1,7 +1,7 @@
 <?php
-$Name = $_POST['fname'];
-$Email = $_POST['email'];
-$Password = md5($_POST['pwd']);
+$Name = $_GET['fname'];
+$Email = $_GET['mail'];
+$Password = md5($_GET['pwd']);
 
 echo "Name: " . $Name; 
 echo "<br>"; 

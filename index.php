@@ -7,7 +7,7 @@
             <input type="text" name="fname" id="name"><br><br>
 
             <label for="email">Email:</label>
-            <input type="text" name="mail" id="email"><br><br>
+            <input type="email" name="email" id="email"><br><br>
 
             <label for="password">Password:</label>
             <input type="password" name="pwd" id="password"><br><br>
