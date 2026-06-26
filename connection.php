@@ -2,11 +2,12 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$conn = mysqli_connect("$servername", "$username", "$password");
+$database = "scriptingdb";
+$conn = mysqli_connect("$servername", "$username", "$password", "$database");
 
 if($conn != true){
     echo "Connection Failed";
 }else{
-    echo "Connection Successful";
+    echo "";
 }
 ?>
