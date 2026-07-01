@@ -27,7 +27,7 @@
             text-align: center;
         }
 
-        input, textarea {
+        textarea {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -55,6 +55,13 @@
             display: flex;
             justify-content: center;
         }
+
+        #qrText {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +75,7 @@
     <button id="downloadBtn" style="display:none;">Download QR</button>
 
     <div id="qrcode"></div>
+    <div id="qrText">Scan QR code to get details</div>
 </div>
 
 <script>
@@ -77,8 +85,10 @@ function generateQR() {
     const data = document.getElementById("data").value.trim();
     const qrContainer = document.getElementById("qrcode");
     const downloadBtn = document.getElementById("downloadBtn");
+    const qrText = document.getElementById("qrText");
 
     qrContainer.innerHTML = "";
+    qrText.style.display = "none";
 
     if (!data) {
         alert("Please enter something.");
@@ -94,16 +104,34 @@ function generateQR() {
         correctLevel: QRCode.CorrectLevel.H
     });
 
-    // Show download button
+    qrText.style.display = "block";
     downloadBtn.style.display = "inline-block";
 }
 
 document.getElementById("downloadBtn").addEventListener("click", function() {
     const qrCanvas = document.querySelector("#qrcode canvas");
     if (qrCanvas) {
+        // Create a new canvas to merge QR + text
+        const finalCanvas = document.createElement("canvas");
+        const ctx = finalCanvas.getContext("2d");
+
+        // Set canvas size (QR height + extra space for text)
+        finalCanvas.width = qrCanvas.width;
+        finalCanvas.height = qrCanvas.height + 40;
+
+        // Draw QR code
+        ctx.drawImage(qrCanvas, 0, 0);
+
+        // Add text below QR
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#000";
+        ctx.textAlign = "center";
+        ctx.fillText("Scan QR code to get details", finalCanvas.width / 2, qrCanvas.height + 25);
+
+        // Download merged image
         const link = document.createElement("a");
-        link.download = "qrcode.png";
-        link.href = qrCanvas.toDataURL("image/png");
+        link.download = "qrcode_with_text.jpg";
+        link.href = finalCanvas.toDataURL("image/jpg");
         link.click();
     } else {
         alert("Please generate a QR code first.");
