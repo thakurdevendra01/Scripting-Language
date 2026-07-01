@@ -1,7 +1,10 @@
 <?php
 include("connection.php");
 
+
+
 $sql = mysqli_query($conn, "SELECT * FROM student");
+echo '<input type="button" value="Back" onclick="window.location.href=\'form.php\'">';
 echo "<center><h1>Students Record</h1>";
 
 echo "<table border='1' cellpadding='8' cellspacing='0'>";
