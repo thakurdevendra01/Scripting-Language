@@ -20,7 +20,7 @@ while ($det = mysqli_fetch_array($sql)) {
     echo "<td>" . $det[2] . "</td>";
     echo "<td>" . $det[3] . "</td>";
     echo "<td>
-            <a href='edit.php?id=" . $det[0] . "'> Edit </a> |
+            <a href='update.php?id=" . $det[0] . "'> Edit </a> |
             <a href='delete.php?id=" . $det[0] . "'> Delete </a>
           </td>";
     echo "</tr>";
